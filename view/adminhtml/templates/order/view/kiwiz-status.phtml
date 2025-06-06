@@ -1,0 +1,11 @@
+<?php $order = $this->getOrder();?>
+<?php if ($order->hasInvoices()): ?>
+    <section class="admin__page-section">
+        <div class="admin__page-section-title">
+        <span class="title"><img src="<?php echo $this->getLogo()?>" alt="<?php echo __('Kiwiz synchronization') ?>" />
+            <?php $img =  $this->getStatusOrder($order)?>
+            <img src="<?php echo $img?>" width="38" height="38" alt="<?php echo $this->getTextCertified()?>" />
+        </span>
+        </div>
+    </section>
+<?php endif;?>

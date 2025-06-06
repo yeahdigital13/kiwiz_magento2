@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <kiwizauth>
+            <auth>
+                <apiurl>https://api.kiwiz.io</apiurl>
+            </auth>
+        </kiwizauth>
+        <kiwizsettings>
+            <general>
+                <logger_enabled>1</logger_enabled>
+                <is_test_mode>0</is_test_mode>
+                <queue_cron_enabled>1</queue_cron_enabled>
+            </general>
+            <attributes>
+                <manufacturer>manufacturer</manufacturer>
+                <ean13>sku</ean13>
+            </attributes>
+            <failure>
+                <enabled>0</enabled>
+            </failure>
+            <quota>
+                <cron_enabled>0</cron_enabled>
+                <quota_notification_threshold>80</quota_notification_threshold>
+            </quota>
+        </kiwizsettings>
+    </default>
+</config>

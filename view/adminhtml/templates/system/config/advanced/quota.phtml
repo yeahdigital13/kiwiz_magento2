@@ -1,0 +1,16 @@
+<?php $quotas = $this->getQuotas();?>
+<?php if (count($quotas)): ?>
+    <div style="display: flex; flex-wrap: wrap;">
+        <?php foreach ($quotas as $quota): ?>
+            <div style="padding: 20px">
+                <b><?php echo $quota['label']?></b><br/>
+                <progress  value="<?php echo $quota['used']?>" max="<?php echo $quota['limit']?>" >
+                    <?php echo floor(($quota['used']/$quota['limit']) * 100)?>%
+                </progress><br/>
+                <span style="font-size: 1.1rem"><?php echo __('%1 / %2 used', $quota['used'], $quota['limit'])?></span>
+            </div>
+        <?php endforeach; ?>
+    </div>
+<?php else: ?>
+    <div><?php echo __('Quota are not available')?></div>
+<?php endif; ?>

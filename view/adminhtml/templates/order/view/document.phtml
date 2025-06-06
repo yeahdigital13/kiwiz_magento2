@@ -1,0 +1,61 @@
+<?php $order = $this->getOrder();?>
+<?php if ($order->hasInvoices()): ?>
+<section class="admin__page-section">
+    <div class="admin__page-section-title">
+        <span class="title"><img src="<?php echo $this->getLogo()?>" alt="<?php echo __('Kiwiz synchronization') ?>" />
+            <?php $img =  $this->getStatusOrder($order)?>
+            <img src="<?php echo $img?>" width="38" height="38" alt="<?php echo $this->getTextCertified()?>" />
+        </span>
+    </div>
+    <div class="admin__table-wrapper">
+        <table class="data-table admin__table-primary edit-order-table">
+            <thead>
+            <tr class="headings">
+                <th><span><?php echo __('Invoice ID') ?></span></th>
+                <th><span><?php echo __('Kiwiz block hash') ?></span></th>
+                <th><span><?php echo __('Kiwiz file hash') ?></span></th>
+                <th><span><?php echo __('Number of tries') ?></span></th>
+                <th><span><?php echo __('Last message') ?></span></th>
+            </tr>
+            </thead>
+            <tbody class="even">
+            <?php foreach ($order->getInvoiceCollection() as $invoice): ?>
+            <?php $queue = $this->getQueuedInvoice($invoice->getId()) ?>
+                <tr>
+                    <td><?php echo $invoice->getIncrementId()?></td>
+                    <td><?php echo $invoice->getKiwizBlockHash()?></td>
+                    <td><?php echo $invoice->getKiwizFileHash()?></td>
+                    <td><?php echo $queue->getNbSync();?></td>
+                    <td><?php echo $queue->getLastResponse()?></td>
+                </tr>
+            <?php endforeach ?>
+            </tbody>
+        </table>
+        <?php if ($order->hasCreditmemos()): ?>
+        <table class="data-table admin__table-primary edit-order-table">
+            <thead>
+            <tr class="headings">
+                <th><span><?php echo __('Creditmemo ID') ?></span></th>
+                <th><span><?php echo __('Kiwiz block hash') ?></span></th>
+                <th><span><?php echo __('Kiwiz file hash') ?></span></th>
+                <th><span><?php echo __('Number of tries') ?></span></th>
+                <th><span><?php echo __('Last message') ?></span></th>
+            </tr>
+            </thead>
+            <tbody class="even">
+            <?php foreach ($order->getCreditmemosCollection() as $creditmemo): ?>
+                <?php $queue = $this->getQueuedCreditmemo($creditmemo->getId()) ?>
+                <tr>
+                    <td><?php echo $creditmemo->getIncrementId()?></td>
+                    <td><?php echo $creditmemo->getKiwizBlockHash()?></td>
+                    <td><?php echo $creditmemo->getKiwizFileHash()?></td>
+                    <td><?php echo $queue->getNbSync();?></td>
+                    <td><?php echo $queue->getLastResponse()?></td>
+                </tr>
+            <?php endforeach ?>
+            </tbody>
+        </table>
+    <?php endif?>
+    </div>
+</section>
+<?php endif;?>

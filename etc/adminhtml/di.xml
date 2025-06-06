@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!--
+  ~ /**
+  ~  * Kiwiz
+  ~  *
+  ~  * NOTICE OF LICENSE
+  ~  *
+  ~  * This source file is subject to the Open Software License (OSL 3.0)
+  ~  * that is available through the world-wide-web at the following URI:
+  ~  * https://opensource.org/licenses/osl-3.0.php
+  ~  * If you did not receive a copy of the PHP License and are unable to
+  ~  * obtain it through the web, please send a note to contact@kiwiz.io
+  ~  * so we can mail you a copy immediately.
+  ~  *
+  ~  * @author     Kiwiz <contact@kiwiz.io>
+  ~  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+  ~  */
+  -->
+
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Sales\Controller\Adminhtml\Order\Invoice\PrintAction" type="Kwz\Certification\Controller\Adminhtml\PrintInvoice"/>
+    <preference for="Magento\Sales\Controller\Adminhtml\Order\Creditmemo\PrintAction" type="Kwz\Certification\Controller\Adminhtml\PrintCreditmemo"/>
+    <preference for="Magento\Sales\Controller\Adminhtml\Invoice\Pdfinvoices" type="Kwz\Certification\Controller\Adminhtml\Pdfinvoices"/>
+    <preference for="Magento\Sales\Controller\Adminhtml\Creditmemo\Pdfcreditmemos" type="Kwz\Certification\Controller\Adminhtml\Pdfcreditmemos"/>
+    <preference for="Magento\Sales\Controller\Adminhtml\Order\Pdfinvoices" type="Kwz\Certification\Controller\Adminhtml\Order\Pdfinvoices"/>
+    <preference for="Magento\Sales\Controller\Adminhtml\Order\Pdfcreditmemos" type="Kwz\Certification\Controller\Adminhtml\Order\Pdfcreditmemos"/>
+
+    <type name="\Magento\Sales\Block\Adminhtml\Order\Invoice\View">
+        <plugin name="Kwz_Certification::synchronize" type="Kwz\Certification\Plugin\InvoiceView" />
+    </type>
+
+    <type name="\Magento\Sales\Block\Adminhtml\Order\Creditmemo\View">
+        <plugin name="Kwz_Certification::synchronize" type="Kwz\Certification\Plugin\CreditmemoView" />
+    </type>
+</config>
+

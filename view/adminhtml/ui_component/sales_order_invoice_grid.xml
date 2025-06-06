@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ /**
+  ~  * Kiwiz
+  ~  *
+  ~  * NOTICE OF LICENSE
+  ~  *
+  ~  * This source file is subject to the Open Software License (OSL 3.0)
+  ~  * that is available through the world-wide-web at the following URI:
+  ~  * https://opensource.org/licenses/osl-3.0.php
+  ~  * If you did not receive a copy of the PHP License and are unable to
+  ~  * obtain it through the web, please send a note to contact@kiwiz.io
+  ~  * so we can mail you a copy immediately.
+  ~  *
+  ~  * @author     Kiwiz <contact@kiwiz.io>
+  ~  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+  ~  */
+  -->
+
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <listingToolbar name="listing_top">
+        <filters name="listing_filters">
+            <filterSelect
+                    name="kiwiz_is_synchronized"
+                    provider="${ $.parentName }"
+                    component="Magento_Ui/js/form/element/ui-select"
+                    template="ui/grid/filters/elements/ui-select"
+            >
+                <settings>
+                    <options class="Kwz\Certification\Model\Source\KiwizStatus"/>
+                    <caption translate="true">Select...</caption>
+                    <label translate="true">Kiwiz synchronization status</label>
+                    <dataScope>kiwiz_is_synchronized</dataScope>
+                    <imports>
+                        <link name="visible">componentType = column, index = ${ $.index }:visible</link>
+                    </imports>
+                </settings>
+            </filterSelect>
+        </filters>
+    </listingToolbar>
+    <columns name="sales_order_invoice_columns">
+        <column
+                name="kiwiz_is_synchronized"
+                class="Kwz\Certification\Ui\Component\Listing\Column\KiwizSynchronization"
+                component="Magento_Ui/js/grid/columns/thumbnail"
+        >
+            <settings>
+                <hasPreview>false</hasPreview>
+                <sortable>false</sortable>
+                <visible>true</visible>
+                <label translate="true">Kiwiz synchronization status</label>
+            </settings>
+        </column>
+        <column name="kiwiz_block_hash">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Kiwiz block hash</item>
+                </item>
+            </argument>
+        </column>
+        <column name="kiwiz_file_hash">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Kiwiz file hash</item>
+                </item>
+            </argument>
+        </column>
+    </columns>
+</listing>

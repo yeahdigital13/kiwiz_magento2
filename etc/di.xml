@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="KiwizLogger" type="Magento\Framework\Logger\Monolog">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="info" xsi:type="object">Kwz\Certification\Logger\Handler\InfoHandler</item>
+                <item name="error" xsi:type="object">Kwz\Certification\Logger\Handler\ErrorHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Kwz\Certification\Helper\Kiwiz">
+        <arguments>
+            <argument name="logger" xsi:type="object">KiwizLogger</argument>
+        </arguments>
+    </type>
+
+    <virtualType name="Magento\Sales\Model\ResourceModel\Order\Invoice\Grid">
+        <arguments>
+            <argument name="columns" xsi:type="array">
+                <item name="kiwiz_is_synchronized" xsi:type="string">
+                    sales_invoice.kiwiz_is_synchronized
+                </item>
+                <item name="kiwiz_block_hash" xsi:type="string">
+                    sales_invoice.kiwiz_block_hash
+                </item>
+                <item name="kiwiz_file_hash" xsi:type="string">
+                    sales_invoice.kiwiz_file_hash
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="CreditmemoGridAggregator">
+        <arguments>
+            <argument name="columns" xsi:type="array">
+                <item name="kiwiz_is_synchronized" xsi:type="string">
+                    sales_creditmemo.kiwiz_is_synchronized
+                </item>
+                <item name="kiwiz_block_hash" xsi:type="string">
+                    sales_creditmemo.kiwiz_block_hash
+                </item>
+                <item name="kiwiz_file_hash" xsi:type="string">
+                    sales_creditmemo.kiwiz_file_hash
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Magento\Sales\Model\ResourceModel\Order\Grid">
+        <arguments>
+            <argument name="columns" xsi:type="array">
+                <item name="kiwiz_is_synchronized" xsi:type="string">sales_order.kiwiz_is_synchronized</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magento\Config\Model\Config\TypePool">
+        <arguments>
+            <argument name="sensitive" xsi:type="array">
+                <item name="kiwizauth/auth/password" xsi:type="string">1</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Config\Model\Config">
+        <plugin name="admin_system_config_save_plugin" type="Kwz\Certification\Plugin\ConfigSave" sortOrder="1"/>
+    </type>
+
+    <type name="Magento\Sales\Api\InvoiceRepositoryInterface">
+        <plugin name="kiwiz_invoice_repository_save" type="Kwz\Certification\Plugin\InvoiceRepositorySave" sortOrder="1"/>
+    </type>
+    <type name="Magento\Sales\Api\Data\InvoiceInterface">
+        <plugin name="kiwiz_invoice_save" type="Kwz\Certification\Plugin\InvoiceSave" sortOrder="1"/>
+    </type>
+
+    <type name="Magento\Sales\Api\CreditmemoRepositoryInterface">
+        <plugin name="kiwiz_creditmemo_repository_save" type="Kwz\Certification\Plugin\CreditmemoRepositorySave" sortOrder="1"/>
+    </type>
+    <type name="Magento\Sales\Api\Data\CreditmemoInterface">
+        <plugin name="kiwiz_creditmemo_save" type="Kwz\Certification\Plugin\CreditmemoSave" sortOrder="1"/>
+    </type>
+
+    <type name="Magento\Sales\Api\OrderRepositoryInterface">
+        <plugin name="kiwiz_order_repository_save" type="Kwz\Certification\Plugin\OrderRepositorySave" sortOrder="1"/>
+    </type>
+    <type name="Magento\Sales\Api\Data\OrderInterface">
+        <plugin name="kiwiz_order_save" type="Kwz\Certification\Plugin\OrderSave" sortOrder="1"/>
+    </type>
+
+    <preference for="Magento\Sales\Model\Order\Pdf\Invoice" type="Kwz\Certification\Model\Sales\Order\Pdf\Invoice" />
+    <preference for="Magento\Sales\Model\Order\Pdf\Creditmemo" type="Kwz\Certification\Model\Sales\Order\Pdf\Creditmemo" />
+    <preference for="Magento\Bundle\Model\Sales\Order\Pdf\Items\Invoice" type="Kwz\Certification\Model\Sales\Order\Pdf\Bundle\Invoice" />
+    <preference for="Magento\Bundle\Model\Sales\Order\Pdf\Items\Creditmemo" type="Kwz\Certification\Model\Sales\Order\Pdf\Creditmemo" />
+    <preference for="Magento\Sales\Controller\Order\PrintInvoice" type="Kwz\Certification\Controller\PrintInvoice" />
+    <preference for="Magento\Sales\Controller\Order\PrintCreditmemo" type="Kwz\Certification\Controller\PrintCreditmemo" />
+    <preference for="Magento\Sales\Controller\Guest\PrintInvoice" type="Kwz\Certification\Controller\Guest\PrintInvoice" />
+    <preference for="Magento\Sales\Controller\Guest\PrintCreditmemo" type="Kwz\Certification\Controller\Guest\PrintCreditmemo" />
+    <preference for="Kwz\Certification\Api\QueueRepositoryInterface" type="Kwz\Certification\Model\QueueRepository"/>
+    <preference for="Kwz\Certification\Model\Api\Data\QueueInterface" type="Kwz\Certification\Model\Queue"/>
+    <preference for="Kwz\Certification\Model\Api\Data\SearchQueueResultInterface" type="Kwz\Certification\Model\QueueSearchResults"/>
+</config>

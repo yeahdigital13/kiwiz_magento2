@@ -1,0 +1,58 @@
+{
+  "kiwiz_queue": {
+    "column": {
+      "value_id": true,
+      "last_response": true,
+      "document": true,
+      "nb_sync": true,
+      "id_doc": true
+    },
+    "constraint": {
+      "PRIMARY": true
+    }
+  },
+  "sales_order_invoice": {
+    "column": {
+      "kiwiz_block_hash": true,
+      "kiwiz_file_hash": true
+    }
+  },
+  "sales_invoice": {
+    "column": {
+      "kiwiz_block_hash": true,
+      "kiwiz_file_hash": true,
+      "kiwiz_is_synchronized": true
+    }
+  },
+  "sales_invoice_grid": {
+    "column": {
+      "kiwiz_block_hash": true,
+      "kiwiz_file_hash": true,
+      "kiwiz_is_synchronized": true
+    }
+  },
+  "sales_creditmemo": {
+    "column": {
+      "kiwiz_block_hash": true,
+      "kiwiz_file_hash": true,
+      "kiwiz_is_synchronized": true
+    }
+  },
+  "sales_creditmemo_grid": {
+    "column": {
+      "kiwiz_block_hash": true,
+      "kiwiz_file_hash": true,
+      "kiwiz_is_synchronized": true
+    }
+  },
+  "sales_order_grid": {
+    "column": {
+      "kiwiz_is_synchronized": true
+    }
+  },
+  "sales_order": {
+    "column": {
+      "kiwiz_is_synchronized": true
+    }
+  }
+}

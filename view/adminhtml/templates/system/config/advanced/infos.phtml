@@ -1,0 +1,20 @@
+<?php
+/** @var \Kwz\Certification\Block\Adminhtml\System\Config\Infos $block */
+?>
+<div style="
+    margin: 15px 0;
+    padding: 50px;
+    border: 2px solid #323564;
+">
+    <div>
+        <img src="<?php echo $block->getLogoUrl(); ?>" alt="<?php echo __('Kiwiz'); ?>"
+             style="
+            display: block;
+            margin-bottom: 15px;
+        ">
+        <div style="font-size: 14px;">
+            <?php echo __('<p>Since January 2018, all B2C companies need to certify their deals (invoices and credit memos). Known as the "2018 Anti-fraud TVA Law", the law is practical and controls are currently on going.</p><p>Kiwiz is a deal certification solution, entirely independant : you don\'t need to change your billing tool, Kiwiz connects itself to your online store and keeps all your data in the Blockchain.<br/>Magento, Prestashop, Drupal... all CMS are compatible, even your own.</p><p>Avoid a 7500€ fine and certify your invoices and credit memos right now with Kiwiz.</p>'); ?>
+            <a href="<?php echo $block->getKiwizUrl(); ?>" target="_blank" title="Kiwiz"><?php echo __('Go to the website'); ?></a>
+        </div>
+    </div>
+</div>
